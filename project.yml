@@ -1,0 +1,46 @@
+name: MeshLink
+options:
+  bundleIdPrefix: com.meshlink
+  deploymentTarget:
+    iOS: "16.0"
+  xcodeVersion: "16.0"
+  createIntermediateGroups: true
+
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    TARGETED_DEVICE_FAMILY: "1,2"
+    INFOPLIST_FILE: MeshLink/Info.plist
+    PRODUCT_BUNDLE_IDENTIFIER: com.meshlink.app
+    MARKETING_VERSION: "3.0.0"
+    CURRENT_PROJECT_VERSION: "1"
+    CODE_SIGN_STYLE: Automatic
+    GENERATE_INFOPLIST_FILE: false
+    ENABLE_BITCODE: false
+    ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS: false
+    ASSETCATALOG_COMPILER_APPICON_NAME: ""
+    CODE_SIGN_ENTITLEMENTS: MeshLink/MeshLink.entitlements
+
+targets:
+  MeshLink:
+    type: application
+    platform: iOS
+    sources:
+      - path: MeshLink
+        excludes:
+          - "Assets.xcassets"
+    settings:
+      base:
+        PRODUCT_NAME: MeshLink
+        INFOPLIST_FILE: MeshLink/Info.plist
+        CODE_SIGN_ENTITLEMENTS: MeshLink/MeshLink.entitlements
+    info:
+      path: MeshLink/Info.plist
+      properties:
+        UIBackgroundModes:
+          - bluetooth-central
+          - bluetooth-peripheral
+        NSBluetoothAlwaysUsageDescription: "MeshLink uses Bluetooth to find and connect to nearby peers for encrypted mesh messaging."
+        NSBluetoothPeripheralUsageDescription: "MeshLink uses Bluetooth to communicate with nearby peers."
+        NFCReaderUsageDescription: "MeshLink uses NFC to securely share encryption keys between devices by tapping."
+        NSPhotoLibraryUsageDescription: "MeshLink can send photos to connected peers over encrypted Bluetooth."
